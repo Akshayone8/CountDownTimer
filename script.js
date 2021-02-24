@@ -9,15 +9,17 @@ let paused=document.getElementById('pas');
 let resume=document.getElementById('resume');
 let h=document.getElementById('heading');
 
+
 let cPause;
 
-
 function validate(){
+  h.innerHTML=='';
 
 if(seconds.value==0){
   if(minutes.value>0){
     minutes.value--;
     seconds.value=59;
+    
   }
   else if(hours.value>0){
     minutes.value=59;
@@ -27,6 +29,7 @@ if(seconds.value==0){
     hours.value=24;
     days.value--;
   }else{
+    clearInterval(cPause);
    h.innerHTML='Time Over';
   }
 }else{
@@ -37,6 +40,7 @@ if(seconds.value==0){
 
 
 btn.addEventListener('click',function(e){
+
   e.preventDefault()
   
   cPause=setInterval(function(){validate()},1000);
@@ -59,9 +63,6 @@ reset.addEventListener('click',function(e){
   hours.value=0;
   minutes.value=0;
   seconds.value=0;
- 
-  
-  
 })
 
 
